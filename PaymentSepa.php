@@ -64,6 +64,14 @@ class PaymentSepa extends IsotopePayment
      */
     public function processPayment()
     {
+        $objOrder = new IsotopeOrder();
+
+        if (!$objOrder->findBy('cart_id', $this->Isotope->Cart->id)) {
+            return false;
+        }
+
+        $objOrder->updateOrderStatus($this->new_order_status);
+
         return true;
     }
 
