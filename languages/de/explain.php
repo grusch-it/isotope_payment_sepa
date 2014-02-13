@@ -34,7 +34,7 @@
 /**
  * Help Wizard explanations
  */
-$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][50][1] = array('##sepa_holder##', 'SEPA: Kontoinhaber');
-$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][51][1] = array('##sepa_iban##', 'SEPA: IBAN');
-$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][52][1] = array('##sepa_iban_masked##', 'SEPA: IBAN (unkenntlich)');
-$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][53][1] = array('##sepa_bic##', 'SEPA: BIC');
+$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][50] = array('##sepa_holder##', 'SEPA: Kontoinhaber');
+$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][51] = array('##sepa_iban##', 'SEPA: IBAN');
+$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][52] = array('##sepa_iban_masked##', 'SEPA: IBAN (unkenntlich)');
+$GLOBALS['TL_LANG']['XPL']['isoMailTokens'][53] = array('##sepa_bic##', 'SEPA: BIC');
