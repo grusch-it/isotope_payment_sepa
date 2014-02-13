@@ -133,7 +133,7 @@ class SepaValidator
     public function validateBIC($value, $objWidget)
     {
         $valid = (preg_match('/^[a-z]{4}[a-z]{2}[0-9a-z]{2}([0-9a-z]{3})?\z/i', $value) > 0);
-        var_dump($valid);
+
         if (!$valid) {
             $objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['bic_invalid']);
         }
