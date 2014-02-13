@@ -1,0 +1,6 @@
+<span class="payment_label"><?php echo $this->label ?></span>
+<div class="sepa_info">
+    <span class="label"><?php echo $GLOBALS['TL_LANG']['ISO']['sepa_holder'] ?>:</span> <?php echo $this->holder ?><br />
+    <span class="label"><?php echo $GLOBALS['TL_LANG']['ISO']['sepa_iban'] ?>:</span> <?php echo $this->iban_masked ?><br />
+    <?php if (!empty($this->bic)): ?><span class="label"><?php echo $GLOBALS['TL_LANG']['ISO']['sepa_bic'] ?>:</span> <?php echo $this->bic ?><?php endif ?>
+</div>
