@@ -1,59 +1,34 @@
-<?php if (!defined('TL_ROOT')) {
-    die('You cannot access this file directly!');
-}
+<?php
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2013 Leo Feyer
  *
- * Formerly known as TYPOlight Open Source CMS.
+ * Copyright (c) 2005-2015 Leo Feyer
  *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Michael Gruschwitz 2014
- * @author     Michael Gruschwitz <info@grusch-it.de>
- * @package    Isotope
- * @subpackage Payment
- * @license    LGPL
- * @filesource
+ * @package   isotope_payment_sepa
+ * @author    Michael Gruschwitz <info@grusch-it.de>
+ * @license   LGPL
+ * @copyright Michael Gruschwitz 2015
  */
 
 /**
- * Payment modules
+ * Module Name & Description
  */
-$GLOBALS['ISO_LANG']['PAY']['sepa'] = array
-(
-    'SEPA-Lastschrift',
-    'Wählen Sie diese Zahlungsmethode um die Kontodaten des Kunden bei einer neuen Bestellung abzufragen.'
-);
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][0] = 'SEPA-Lastschrift';
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][1] = 'Fragt bei der Bestellung die Kontodaten (Inhaber, IBAN und BIC) des Kunden ab.';
 
 /**
- * SEPA labels
+ * Checkout Form Validation Errors
  */
-$GLOBALS['TL_LANG']['ISO']['sepa_holder'] = 'Kontoinhaber';
-$GLOBALS['TL_LANG']['ISO']['sepa_iban'] = 'IBAN';
-$GLOBALS['TL_LANG']['ISO']['sepa_bic'] = 'BIC';
+$GLOBALS['TL_LANG']['ERR']['sepa']['iban_country'] = 'Die eingegebene IBAN enthält kein oder ein ungültiges Länderkürzel!';
+$GLOBALS['TL_LANG']['ERR']['sepa']['iban_length'] = 'Die eingebene IBAN ist zu lang oder zu kurz!';
+$GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'] = 'Bitte geben Sie eine gültige IBAN ein!';
+$GLOBALS['TL_LANG']['ERR']['sepa']['bic_invalid'] = 'Bitte geben Sie eine gültige BIC ein!';
 
 /**
- * Error messages
+ * Checkout Form Labels
  */
-$GLOBALS['TL_LANG']['ERR']['sepa'] = array
-(
-    'iban_country' => 'Die eingegebene IBAN enthält kein oder ein ungültiges Länderkürzel',
-    'iban_length' => 'Die eingebene IBAN ist zu lang oder zu kurz!',
-    'iban_invalid' => 'Bitte geben Sie eine gültige IBAN ein!',
-    'bic_invalid' => 'Bitte geben Sie eine gültige BIC ein!'
-);
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['holder'] = 'Kontoinhaber';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['iban'] = 'IBAN';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['bic'] = 'BIC';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['submit'] = 'Absenden';
