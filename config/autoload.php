@@ -16,7 +16,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-    'Gruschit',
+	'Gruschit',
 ));
 
 /**
