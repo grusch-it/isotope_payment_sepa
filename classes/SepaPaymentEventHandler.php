@@ -26,21 +26,6 @@ namespace Gruschit;
 class SepaPaymentEventHandler {
 
 	/**
-	 * Retrieve the names of all SEPA checkout form fields.
-	 *
-	 * @return array
-	 */
-	public function fields()
-	{
-		$arrFields = array_filter(SepaCheckoutForm::getFieldConfigurations(), function ($arrField)
-		{
-			return $arrField['inputType'] != 'submit';
-		});
-
-		return array_keys($arrFields);
-	}
-
-	/**
 	 * Adds account holder, IBAN (raw & masked) and BIC to the notification tokens.
 	 *
 	 * @param ProductCollection $objOrder
@@ -54,11 +39,7 @@ class SepaPaymentEventHandler {
 			return $arrTokens;
 		}
 
-		foreach ($this->fields() as $strName)
-		{
-			$arrTokens[$strName] = SepaCheckoutForm::retrieve($strName);
-			SepaCheckoutForm::forget($strName);
-		}
+		$arrTokens = array_merge($arrTokens, SepaCheckoutForm::retrieveAll());
 
 		// masked IBAN
 		$arrTokens['sepa_iban_masked'] = SepaPayment::maskIBAN($arrTokens['sepa_iban']);
@@ -79,9 +60,6 @@ class SepaPaymentEventHandler {
 			return;
 		}
 
-		foreach ($this->fields() as $strName)
-		{
-			SepaCheckoutForm::forget($strName);
-		}
+		SepaCheckoutForm::forgetAll();
 	}
 }

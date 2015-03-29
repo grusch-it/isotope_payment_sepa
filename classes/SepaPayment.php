@@ -18,6 +18,7 @@ use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
 use Isotope\Model\Payment;
 use Isotope\Model\ProductCollection;
+use Isotope\Model\ProductCollection\Order;
 
 class SepaPayment extends Payment implements IsotopePayment {
 
@@ -30,8 +31,19 @@ class SepaPayment extends Payment implements IsotopePayment {
 	 */
 	public function processPayment(IsotopeProductCollection $objOrder, \Module $objModule)
 	{
+		if ( ! $objOrder instanceof Order)
+		{
+			return true;
+		}
+
+		if (isset($_SESSION['SEPA_PAYMENT']))
+		{
+			$objOrder->payment_data = $_SESSION['SEPA_PAYMENT']->all(false);
+		}
+
 		$objOrder->checkout();
 		$objOrder->updateOrderStatus($this->new_order_status);
+		$objOrder->save();
 
 		return true;
 	}

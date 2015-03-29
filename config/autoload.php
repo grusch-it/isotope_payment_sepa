@@ -29,6 +29,7 @@ ClassLoader::addClasses(array
 	'Gruschit\SepaCheckoutForm'        => 'system/modules/isotope_payment_sepa/classes/SepaCheckoutForm.php',
 	'Gruschit\SepaValidator'           => 'system/modules/isotope_payment_sepa/classes/SepaValidator.php',
 	'Gruschit\SepaPaymentEventHandler' => 'system/modules/isotope_payment_sepa/classes/SepaPaymentEventHandler.php',
+	'Gruschit\SepaPaymentBag'          => 'system/modules/isotope_payment_sepa/classes/SepaPaymentBag.php',
 ));
 
 /**

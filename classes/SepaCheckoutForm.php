@@ -13,6 +13,7 @@
 
 namespace Gruschit;
 
+use Contao\Encryption;
 use Contao\Frontend;
 use Contao\Widget;
 use Isotope\Module\Checkout;
@@ -125,7 +126,8 @@ class SepaCheckoutForm extends Frontend {
 			// make sure that the IBAN form field will only contain a masked value
 			if ($strName == 'sepa_iban')
 			{
-				$objWidget->value = SepaPayment::maskIBAN($strValue);
+				$strMasked = SepaPayment::maskIBAN($strValue);
+				$objWidget->value = $objWidget->encrypt ? Encryption::encrypt($strMasked) : $strMasked;
 			}
 
 			if ($objWidget->hasErrors())
@@ -137,7 +139,7 @@ class SepaCheckoutForm extends Frontend {
 			elseif ($objWidget->submitInput())
 			{
 				self::remember($strName, $strValue);
-				unset($_POST[$strName]); // see #5474
+				unset($_POST[$strName]);
 			}
 		}
 
@@ -145,14 +147,19 @@ class SepaCheckoutForm extends Frontend {
 	}
 
 	/**
-	 * Save a value to the session.
+	 * Save a form field value to the session.
 	 *
-	 * @param string $strKey
-	 * @param string $strValue
+	 * @param string $strKey   The name of the form field
+	 * @param string $strValue The value to be remembered
 	 */
 	public static function remember($strKey, $strValue)
 	{
-		$_SESSION['FORM_DATA'][$strKey] = $strValue;
+		if ( ! isset($_SESSION['SEPA_PAYMENT']))
+		{
+			$_SESSION['SEPA_PAYMENT'] = new SepaPaymentBag();
+		}
+
+		$_SESSION['SEPA_PAYMENT']->put($strKey, $strValue);
 	}
 
 	/**
@@ -163,12 +170,27 @@ class SepaCheckoutForm extends Frontend {
 	 */
 	public static function retrieve($strKey)
 	{
-		if ( ! isset($_SESSION['FORM_DATA'][$strKey]))
+		if ( ! isset($_SESSION['SEPA_PAYMENT']))
 		{
 			return null;
 		}
 
-		return $_SESSION['FORM_DATA'][$strKey];
+		return $_SESSION['SEPA_PAYMENT']->get($strKey);
+	}
+
+	/**
+	 * Retrieve all values from the session.
+	 *
+	 * @return array
+	 */
+	public static function retrieveAll()
+	{
+		if ( ! isset($_SESSION['SEPA_PAYMENT']))
+		{
+			return array();
+		}
+
+		return $_SESSION['SEPA_PAYMENT']->all();
 	}
 
 	/**
@@ -178,10 +200,18 @@ class SepaCheckoutForm extends Frontend {
 	 */
 	public static function forget($strKey)
 	{
-		if (isset($_SESSION['FORM_DATA'][$strKey]))
+		if (isset($_SESSION['SEPA_PAYMENT']))
 		{
-			unset($_SESSION['FORM_DATA'][$strKey]);
+			$_SESSION['SEPA_PAYMENT']->remove($strKey);
 		}
+	}
+
+	/**
+	 * Remove all values from the session
+	 */
+	public static function forgetAll()
+	{
+		unset($_SESSION['SEPA_PAYMENT']);
 	}
 
 	/**
@@ -235,7 +265,7 @@ class SepaCheckoutForm extends Frontend {
 			(
 				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['iban'],
 				'inputType' => 'text',
-				'eval'      => array('mandatory' => true, 'rgxp' => 'sepa_iban')
+				'eval'      => array('mandatory' => true, 'rgxp' => 'sepa_iban', 'encrypt' => true)
 			),
 			'sepa_bic'    => array
 			(
