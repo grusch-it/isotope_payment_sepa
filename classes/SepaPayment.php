@@ -13,6 +13,7 @@
 
 namespace Gruschit;
 
+use Contao\Input;
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
 use Isotope\Model\Payment;
@@ -44,7 +45,15 @@ class SepaPayment extends Payment implements IsotopePayment {
 	 */
 	public function checkoutForm(IsotopeProductCollection $objOrder, \Module $objModule)
 	{
-		return false;
+		$objForm = new SepaCheckoutForm($objModule->tableless);
+
+		// continue checkout process if checkout form is valid
+		if (Input::post('FORM_SUBMIT') == $objForm->getId() && $objForm->validate())
+		{
+			return false;
+		}
+
+		return $objForm->generate();
 	}
 
 	/**
