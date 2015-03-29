@@ -69,6 +69,27 @@ class SepaPayment extends Payment implements IsotopePayment {
 	}
 
 	/**
+	 * Return information or advanced features in the backend.
+	 *
+	 * Shows bank account data.
+	 *
+	 * @param integer $orderId Order ID
+	 * @return string
+	 */
+	public function backendInterface($orderId)
+	{
+		if (is_null($objOrder = Order::findByPk($orderId)) || ! $objOrder instanceof Order)
+		{
+			return parent::backendInterface($orderId);
+		}
+
+		$objPaymentBag = SepaPaymentBag::load($objOrder->payment_data);
+		$objInterface = new SepaBackendInterface($objPaymentBag, $objOrder->getPaymentMethod());
+
+		return $objInterface->generate();
+	}
+
+	/**
 	 * Retrieve masked IBAN code
 	 *
 	 * The country code and the first 4 and last 4 digits will be preserved.

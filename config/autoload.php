@@ -30,6 +30,7 @@ ClassLoader::addClasses(array
 	'Gruschit\SepaValidator'           => 'system/modules/isotope_payment_sepa/classes/SepaValidator.php',
 	'Gruschit\SepaPaymentEventHandler' => 'system/modules/isotope_payment_sepa/classes/SepaPaymentEventHandler.php',
 	'Gruschit\SepaPaymentBag'          => 'system/modules/isotope_payment_sepa/classes/SepaPaymentBag.php',
+	'Gruschit\SepaBackendInterface'    => 'system/modules/isotope_payment_sepa/classes/SepaBackendInterface.php',
 ));
 
 /**
@@ -37,5 +38,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'iso_payment_sepa' => 'system/modules/isotope_payment_sepa/templates/payment',
+	'iso_payment_sepa'    => 'system/modules/isotope_payment_sepa/templates/payment',
+	'be_iso_payment_sepa' => 'system/modules/isotope_payment_sepa/templates/payment',
 ));
