@@ -61,6 +61,12 @@ class SepaPaymentBag implements Serializable {
 				continue;
 			}
 
+			// do not save submit button values
+			if (isset($arrField['inputType']) && $arrField['inputType'] == 'submit')
+			{
+				continue;
+			}
+
 			// encrypted value
 			if (isset($arrField['eval']) && isset($arrField['eval']['encrypt']) && $arrField['eval']['encrypt'] == true)
 			{
