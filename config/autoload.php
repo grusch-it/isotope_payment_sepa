@@ -24,7 +24,8 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-
+	// Classes
+	'Gruschit\SepaValidator'           => 'system/modules/isotope_payment_sepa/classes/SepaValidator.php',
 ));
 
 /**

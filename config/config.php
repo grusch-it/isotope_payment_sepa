@@ -10,3 +10,7 @@
  * @license   LGPL
  * @copyright Michael Gruschwitz 2015
  */
+/**
+ * Checkout Form Validator
+ */
+$GLOBALS['TL_HOOKS']['addCustomRegexp'][] = array('Gruschit\SepaValidator', 'validate');
