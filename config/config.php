@@ -10,6 +10,12 @@
  * @license   LGPL
  * @copyright Michael Gruschwitz 2015
  */
+
+/**
+ * Payment methods
+ */
+\Isotope\Model\Payment::registerModelType('sepa', 'Gruschit\SepaPayment');
+
 /**
  * Checkout Form Validator
  */
