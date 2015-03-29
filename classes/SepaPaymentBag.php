@@ -132,6 +132,12 @@ class SepaPaymentBag implements Serializable {
 		$arrData = array();
 		foreach (SepaCheckoutForm::getFieldConfigurations() as $strName => $arrField)
 		{
+			// do not return submit button values
+			if (isset($arrField['inputType']) && $arrField['inputType'] == 'submit')
+			{
+				continue;
+			}
+
 			$arrData[$strName] = $this->get($strName, $blnDecrypt);
 		}
 
