@@ -29,7 +29,7 @@ $GLOBALS['TL_LANG']['ERR']['sepa']['bic_invalid'] = 'Please enter a valid BIC!';
 /**
  * Checkout Form Labels
  */
-$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['holder'] = 'Account owner';
-$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['iban'] = 'IBAN';
-$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['bic'] = 'BIC';
-$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['submit'] = 'Submit';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_holder'] = 'Account owner';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_iban'] = 'IBAN';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_bic'] = 'BIC';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_submit'] = 'Submit';

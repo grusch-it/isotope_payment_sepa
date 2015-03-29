@@ -257,25 +257,25 @@ class SepaCheckoutForm extends Frontend {
 		(
 			'sepa_holder' => array
 			(
-				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['holder'],
+				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_holder'],
 				'inputType' => 'text',
 				'eval'      => array('mandatory' => true)
 			),
 			'sepa_iban'   => array
 			(
-				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['iban'],
+				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_iban'],
 				'inputType' => 'text',
 				'eval'      => array('mandatory' => true, 'rgxp' => 'sepa_iban', 'encrypt' => true)
 			),
 			'sepa_bic'    => array
 			(
-				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['bic'],
+				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_bic'],
 				'inputType' => 'text',
 				'eval'      => array('mandatory' => false, 'rgxp' => 'sepa_bic')
 			),
 			'nextStep'    => array
 			(
-				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa']['submit'],
+				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_submit'],
 				'inputType' => 'submit'
 			)
 		);
