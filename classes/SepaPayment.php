@@ -20,6 +20,17 @@ use Isotope\Model\Payment;
 use Isotope\Model\ProductCollection;
 use Isotope\Model\ProductCollection\Order;
 
+/**
+ * SEPA Payment Module.
+ *
+ * Collects and persists bank account data.
+ *
+ * @package    isotope_payment_sepa
+ * @author     Michael Gruschwitz <info@grusch-it.de>
+ * @copyright  Michael Gruschwitz 2015
+ * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
+ */
+
 class SepaPayment extends Payment implements IsotopePayment {
 
 	/**

@@ -19,6 +19,17 @@ use Contao\Widget;
 use Isotope\Module\Checkout;
 use Isotope\Template;
 
+/**
+ * SEPA Checkout Form.
+ *
+ * Generates and validates the form and all its fields to collect
+ * the bank account data.
+ *
+ * @package    isotope_payment_sepa
+ * @author     Michael Gruschwitz <info@grusch-it.de>
+ * @copyright  Michael Gruschwitz 2015
+ * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
+ */
 class SepaCheckoutForm extends Frontend {
 
 	/**

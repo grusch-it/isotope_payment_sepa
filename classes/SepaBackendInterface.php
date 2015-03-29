@@ -19,6 +19,17 @@ use Isotope\Interfaces\IsotopePayment;
 use Isotope\Model\Payment;
 use Isotope\Template;
 
+/**
+ * SEPA Backend Interface.
+ *
+ * Shows the bank account data for an order.
+ *
+ * @package    isotope_payment_sepa
+ * @author     Michael Gruschwitz <info@grusch-it.de>
+ * @copyright  Michael Gruschwitz 2015
+ * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
+ */
+
 class SepaBackendInterface extends Frontend {
 
 	/**

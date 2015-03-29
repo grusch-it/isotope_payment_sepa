@@ -16,8 +16,21 @@ namespace Gruschit;
 use Contao\Encryption;
 use Serializable;
 
+/**
+ * SEPA Payment Data Bag.
+ *
+ * Holds the bank account data for the SEPA payment module.
+ *
+ * @package    isotope_payment_sepa
+ * @author     Michael Gruschwitz <info@grusch-it.de>
+ * @copyright  Michael Gruschwitz 2015
+ * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
+ */
 class SepaPaymentBag implements Serializable {
 
+	/**
+	 * @var array
+	 */
 	private $arrData = array();
 
 	/**
