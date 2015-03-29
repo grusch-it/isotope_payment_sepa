@@ -12,6 +12,13 @@
  */
 
 /**
+ * Configuration
+ *
+ * TODO: add to DCA
+ */
+$GLOBALS['ISO_PAYMENT_SEPA']['persist'] = false;
+
+/**
  * Payment methods
  */
 \Isotope\Model\Payment::registerModelType('sepa', 'Gruschit\SepaPayment');
@@ -24,6 +31,9 @@ $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['isotope']['iso_order_statu
 $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['isotope']['iso_order_status_change']['email_text'][] = 'sepa_iban_masked';
 $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['isotope']['iso_order_status_change']['email_text'][] = 'sepa_bic';
 
+/**
+ * Events / Hooks
+ */
 $GLOBALS['ISO_HOOKS']['getOrderNotificationTokens'][] = array('Gruschit\SepaPaymentEventHandler', 'onGetNotificationTokens');
 $GLOBALS['ISO_HOOKS']['postCheckout'][] = array('Gruschit\SepaPaymentEventHandler', 'onPostCheckout');
 
