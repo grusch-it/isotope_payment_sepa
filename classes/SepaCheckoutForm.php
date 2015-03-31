@@ -45,7 +45,7 @@ class SepaCheckoutForm extends Frontend {
 	/**
 	 * @var string
 	 */
-	protected $strClass = 'iso_payment_sepa';
+	protected $strClass = 'iso_sepa';
 
 	/**
 	 * @var bool
@@ -81,6 +81,7 @@ class SepaCheckoutForm extends Frontend {
 		$this->Template->formId = $this->strFormId;
 		$this->Template->formSubmit = $this->strFormId;
 		$this->Template->tableless = $this->blnTableless;
+		$this->Template->class = $this->strClass;
 
 		$this->Template->headline = $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_data'];
 		$this->Template->hl = 'h3';
