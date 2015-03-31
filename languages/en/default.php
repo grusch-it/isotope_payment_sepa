@@ -33,3 +33,9 @@ $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_holder'] = 'Account owner';
 $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_iban'] = 'IBAN';
 $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_bic'] = 'BIC';
 $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_submit'] = 'Submit';
+
+/**
+ * Payment Backend Module Labels
+ */
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_persist'][0] = 'Kontodaten in der Datenbank speichern';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_persist'][1] = 'Die Speicherung der IBAN erfolgt verschlüsselt. Die Kontodaten können auch ohne gespeichert zu werden nach Abschluss einer Bestellung per E-Mail verschickt werden.';

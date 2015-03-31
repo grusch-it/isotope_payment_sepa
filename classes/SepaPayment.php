@@ -47,7 +47,12 @@ class SepaPayment extends Payment implements IsotopePayment {
 			return true;
 		}
 
-		if ($GLOBALS['ISO_PAYMENT_SEPA']['persist'] === true && isset($_SESSION['SEPA_PAYMENT']))
+		if ( ! $objOrder->getPaymentMethod() instanceof SepaPayment)
+		{
+			return true;
+		}
+
+		if ($objOrder->getPaymentMethod()->sepa_persist && isset($_SESSION['SEPA_PAYMENT']))
 		{
 			$objOrder->payment_data = $_SESSION['SEPA_PAYMENT']->all(false);
 		}

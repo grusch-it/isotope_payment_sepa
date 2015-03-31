@@ -12,13 +12,6 @@
  */
 
 /**
- * Configuration
- *
- * TODO: add to DCA
- */
-$GLOBALS['ISO_PAYMENT_SEPA']['persist'] = false;
-
-/**
  * Payment methods
  */
 \Isotope\Model\Payment::registerModelType('sepa', 'Gruschit\SepaPayment');
