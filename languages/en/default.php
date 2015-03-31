@@ -1,59 +1,42 @@
-<?php if (!defined('TL_ROOT')) {
-    die('You cannot access this file directly!');
-}
+<?php
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2013 Leo Feyer
  *
- * Formerly known as TYPOlight Open Source CMS.
+ * Copyright (c) 2005-2015 Leo Feyer
  *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Michael Gruschwitz 2014
- * @author     Michael Gruschwitz <info@grusch-it.de>
- * @package    Isotope
- * @subpackage Payment
- * @license    LGPL
- * @filesource
+ * @package   isotope_payment_sepa
+ * @author    Michael Gruschwitz <info@grusch-it.de>
+ * @license   LGPL
+ * @copyright Michael Gruschwitz 2015
  */
 
 /**
- * Payment modules
+ * Module Name & Description
  */
-$GLOBALS['ISO_LANG']['PAY']['sepa'] = array
-(
-    'SEPA',
-    'Collects bank account data from the customer.'
-);
+
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][0] = 'SEPA';
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][1] = 'Collects bank account data from the customer.';
 
 /**
- * SEPA labels
+ * Checkout Form Validation Errors
  */
-$GLOBALS['TL_LANG']['ISO']['sepa_holder'] = 'Account holder';
-$GLOBALS['TL_LANG']['ISO']['sepa_iban'] = 'IBAN';
-$GLOBALS['TL_LANG']['ISO']['sepa_bic'] = 'BIC';
+$GLOBALS['TL_LANG']['ERR']['sepa']['iban_country'] = 'Please enter an IBAN with a valid country code!';
+$GLOBALS['TL_LANG']['ERR']['sepa']['iban_length'] = 'The entered IBAN is either too short or too long!';
+$GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'] = 'Please enter a valid IBAN!';
+$GLOBALS['TL_LANG']['ERR']['sepa']['bic_invalid'] = 'Please enter a valid BIC!';
 
 /**
- * Error messages
+ * Checkout Form
  */
-$GLOBALS['TL_LANG']['ERR']['sepa'] = array
-(
-    'iban_country' => 'Please enter an IBAN with a valid country code!',
-    'iban_length' => 'The entered IBAN is either too short or too long!',
-    'iban_invalid' => 'Please enter a valid IBAN!',
-    'bic_invalid' => 'Please enter a valid BIC!'
-);
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_data'] = 'Account data';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_holder'] = 'Account owner';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_iban'] = 'IBAN';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_bic'] = 'BIC';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_submit'] = 'Submit';
+
+/**
+ * Payment Backend Module Labels
+ */
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_persist'][0] = 'Kontodaten in der Datenbank speichern';
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_persist'][1] = 'Die Speicherung der IBAN erfolgt verschlüsselt. Die Kontodaten können auch ohne gespeichert zu werden nach Abschluss einer Bestellung per E-Mail verschickt werden.';

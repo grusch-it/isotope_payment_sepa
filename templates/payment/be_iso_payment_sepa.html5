@@ -1,0 +1,18 @@
+<div id="tl_buttons">
+	<a href="<?php echo $this->backHref; ?>" class="header_back" title="<?php echo specialchars($this->back); ?>"><?php echo $this->back; ?></a>
+</div>
+
+<h2 class="sub_headline"><?php echo $this->name; ?></h2>
+
+<table class="tl_show">
+	<tbody>
+		<?php $index = 0; ?>
+		<?php foreach ($this->data as $key => $value): ?>
+		<tr>
+			<td<?php if (($index % 2) != 0): ?> class="tl_bg"<?php endif; ?>><span class="tl_label"><?php echo $GLOBALS['TL_LANG']['tl_iso_payment'][$key]; ?></span></td>
+			<td<?php if (($index % 2) != 0): ?> class="tl_bg"<?php endif; ?>><?php echo $value; ?></td>
+		</tr>
+			<?php $index++; ?>
+		<?php endforeach ?>
+	</tbody>
+</table>
