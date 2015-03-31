@@ -82,6 +82,9 @@ class SepaCheckoutForm extends Frontend {
 		$this->Template->formSubmit = $this->strFormId;
 		$this->Template->tableless = $this->blnTableless;
 
+		$this->Template->headline = $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_data'];
+		$this->Template->hl = 'h3';
+
 		foreach (self::getFieldConfigurations() as $strName => $arrField)
 		{
 			if (is_null($objWidget = $this->createWidget($strName, $arrField)))

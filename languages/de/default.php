@@ -26,8 +26,9 @@ $GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'] = 'Bitte geben Sie eine gült
 $GLOBALS['TL_LANG']['ERR']['sepa']['bic_invalid'] = 'Bitte geben Sie eine gültige BIC ein!';
 
 /**
- * Checkout Form Labels
+ * Checkout Form
  */
+$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_data'] = 'Kontodaten';
 $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_holder'] = 'Kontoinhaber';
 $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_iban'] = 'IBAN';
 $GLOBALS['TL_LANG']['tl_iso_payment']['sepa_bic'] = 'BIC';
