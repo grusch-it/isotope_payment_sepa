@@ -13,6 +13,8 @@
 
 namespace Gruschit;
 
+use Isotope\Model\ProductCollection;
+
 /**
  * SEPA Payment Event Handler
  *

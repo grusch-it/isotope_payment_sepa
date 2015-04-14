@@ -50,6 +50,8 @@ class SepaBackendInterface extends Frontend {
 	 */
 	public function __construct(SepaPaymentBag $objPaymentBag, IsotopePayment $objPayment)
 	{
+		parent::__construct();
+
 		$this->Template = new Template($this->strTemplate);
 		$this->Template->back = $GLOBALS['TL_LANG']['MSC']['backBT'];
 		$this->Template->backHref = ampersand(str_replace('&key=payment', '', Environment::get('request')));
