@@ -139,7 +139,7 @@ class SepaCheckoutForm extends Frontend {
 			$strValue = $objWidget->value;
 
 			// make sure that the IBAN form field will only contain a masked value
-			if ($strName == 'sepa_iban')
+			if ($strName == 'sepa_iban' && ! $objWidget->hasErrors())
 			{
 				$strMasked = SepaPayment::maskIBAN($strValue);
 				$objWidget->value = $objWidget->encrypt ? Encryption::encrypt($strMasked) : $strMasked;
