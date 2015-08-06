@@ -49,27 +49,27 @@ class SepaValidator {
 	/**
 	 * @see http://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN
 	 * @param string $value
-	 * @param Widget $objWidget
+	 * @param Widget|null $objWidget
 	 * @return bool
 	 */
-	public function validateIBAN($value, Widget $objWidget)
+	public function validateIBAN($value, Widget $objWidget = null)
 	{
 		$normalized = strtolower(str_replace(' ', '', $value));
 		$country = substr($normalized, 0, 2);
-		$length = $this->getIBANLength($country);
+		$expectedLength = $this->getIBANLength($country);
 
 		// invalid country
-		if ($length === null)
+		if ($expectedLength === null)
 		{
-			$objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['iban_country']);
+			$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_country'], $objWidget);
 
 			return false;
 		}
 
 		// invalid length
-		if ($length != strlen($normalized))
+		if ($expectedLength != strlen($normalized))
 		{
-			$objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['iban_length']);
+			$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_length'], $objWidget);
 
 			return false;
 		}
@@ -97,7 +97,7 @@ class SepaValidator {
 			{
 				if ( ! is_numeric($char))
 				{
-					$objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid']);
+					$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'], $objWidget);
 
 					return false;
 				}
@@ -110,7 +110,7 @@ class SepaValidator {
 
 		if ( ! $valid)
 		{
-			$objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid']);
+			$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'], $objWidget);
 		}
 
 		return $valid;
@@ -283,5 +283,17 @@ class SepaValidator {
 			'y' => 34,
 			'z' => 35
 		);
+	}
+
+	/**
+	 * @param string $strError
+	 * @param Widget|null $objWidget
+	 */
+	protected function addErrorToWidget($strError, $objWidget)
+	{
+		if ($objWidget !== null)
+		{
+			$objWidget->addError($strError);
+		}
 	}
 }
