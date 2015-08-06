@@ -56,10 +56,10 @@ class SepaValidator {
 	{
 		$normalized = strtolower(str_replace(' ', '', $value));
 		$country = substr($normalized, 0, 2);
-		$length = $this->getIBANLength($country);
+		$expectedLength = $this->getIBANLength($country);
 
 		// invalid country
-		if ($length === null)
+		if ($expectedLength === null)
 		{
 			$objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['iban_country']);
 
@@ -67,7 +67,7 @@ class SepaValidator {
 		}
 
 		// invalid length
-		if ($length != strlen($normalized))
+		if ($expectedLength != strlen($normalized))
 		{
 			$objWidget->addError($GLOBALS['TL_LANG']['ERR']['sepa']['iban_length']);
 
