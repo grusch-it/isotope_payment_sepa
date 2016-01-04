@@ -26,6 +26,110 @@ use Contao\Widget;
 class SepaValidator {
 
 	/**
+	 * @var array
+	 */
+	protected $letterMappings = [
+		'A' => 10,
+		'B' => 11,
+		'C' => 12,
+		'D' => 13,
+		'E' => 14,
+		'F' => 15,
+		'G' => 16,
+		'H' => 17,
+		'I' => 18,
+		'J' => 19,
+		'K' => 20,
+		'L' => 21,
+		'M' => 22,
+		'N' => 23,
+		'O' => 24,
+		'P' => 25,
+		'Q' => 26,
+		'R' => 27,
+		'S' => 28,
+		'T' => 29,
+		'U' => 30,
+		'V' => 31,
+		'W' => 32,
+		'X' => 33,
+		'Y' => 34,
+		'Z' => 35,
+	];
+
+	/**
+	 * @var array
+	 */
+	protected $lengthMappings = array(
+		'AD' => 24,
+		'AE' => 23,
+		'AL' => 28,
+		'AT' => 20,
+		'AZ' => 28,
+		'BA' => 20,
+		'BE' => 16,
+		'BG' => 22,
+		'BH' => 22,
+		'BR' => 29,
+		'CH' => 21,
+		'CR' => 21,
+		'CY' => 28,
+		'CZ' => 24,
+		'DE' => 22,
+		'DK' => 18,
+		'DO' => 28,
+		'EE' => 20,
+		'ES' => 24,
+		'FI' => 18,
+		'FO' => 18,
+		'FR' => 27,
+		'GB' => 22,
+		'GE' => 22,
+		'GI' => 23,
+		'GL' => 18,
+		'GR' => 27,
+		'GT' => 28,
+		'HR' => 21,
+		'HU' => 28,
+		'IE' => 22,
+		'IL' => 23,
+		'IS' => 26,
+		'IT' => 27,
+		'JO' => 30,
+		'KW' => 30,
+		'KZ' => 20,
+		'LB' => 28,
+		'LI' => 21,
+		'LT' => 20,
+		'LU' => 20,
+		'LV' => 21,
+		'MC' => 27,
+		'MD' => 24,
+		'ME' => 22,
+		'MK' => 19,
+		'MR' => 27,
+		'MT' => 31,
+		'MU' => 30,
+		'NL' => 18,
+		'NO' => 15,
+		'PK' => 24,
+		'PL' => 28,
+		'PS' => 29,
+		'PT' => 25,
+		'QA' => 29,
+		'RO' => 24,
+		'RS' => 22,
+		'SA' => 24,
+		'SE' => 24,
+		'SI' => 19,
+		'SK' => 24,
+		'SM' => 27,
+		'TN' => 24,
+		'TR' => 26,
+		'VG' => 24
+	);
+
+	/**
 	 * @param string $rgxp
 	 * @param string $value
 	 * @param Widget $objWidget
@@ -36,10 +140,10 @@ class SepaValidator {
 		switch ( strtolower($rgxp) )
 		{
 			case 'sepa_iban':
-				return $this->validateIBAN($value, $objWidget);
+				return $this->validateIban($value, $objWidget);
 
 			case 'sepa_bic':
-				return $this->validateBIC($value, $objWidget);
+				return $this->validateBic($value, $objWidget);
 
 			default:
 				return null;
@@ -48,18 +152,17 @@ class SepaValidator {
 
 	/**
 	 * @see http://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN
+	 * @see http://www.cnb.cz/miranda2/export/sites/www.cnb.cz/cs/platebni_styk/iban/download/EBS204.pdf
 	 * @param string $value
 	 * @param Widget|null $objWidget
 	 * @return bool
 	 */
-	public function validateIBAN($value, Widget $objWidget = null)
+	public function validateIban($value, Widget $objWidget = null)
 	{
-		$normalized = strtolower(str_replace(' ', '', $value));
-		$country = substr($normalized, 0, 2);
-		$expectedLength = $this->getIBANLength($country);
+		$iban = $this->normalizeIban($value);
 
-		// invalid country
-		if ($expectedLength === null)
+		// invalid or unkown country code
+		if ( ! $this->checkIbanCountryCode($iban))
 		{
 			$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_country'], $objWidget);
 
@@ -67,53 +170,22 @@ class SepaValidator {
 		}
 
 		// invalid length
-		if ($expectedLength != strlen($normalized))
+		if ( ! $this->checkIbanLength($iban))
 		{
 			$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_length'], $objWidget);
 
 			return false;
 		}
 
-		// moving the 4 first characters to the end
-		$moved = substr($normalized, 4) . substr($normalized, 0, 4);
-
-		// get letter -> 2-digit mappings
-		$mappings = $this->getIBANMappings();
-
-		// transform iban
-		$transformed = '';
-		foreach (str_split($moved) as $char)
-		{
-
-			$add = $char;
-
-			// get letter mapping if $char is a not numeric
-			if ( ! is_numeric($char) && isset($mappings[$char]))
-			{
-				$add = $mappings[$char];
-				// $char is not numeric nor a letter
-			}
-			else
-			{
-				if ( ! is_numeric($char))
-				{
-					$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'], $objWidget);
-
-					return false;
-				}
-			}
-
-			$transformed .= $add;
-		}
-
-		$valid = bcmod($transformed, '97') === '1';
-
-		if ( ! $valid)
+		// invalid check digits
+		if ( ! $this->checkIbanDigits($iban))
 		{
 			$this->addErrorToWidget($GLOBALS['TL_LANG']['ERR']['sepa']['iban_invalid'], $objWidget);
+
+			return false;
 		}
 
-		return $valid;
+		return true;
 	}
 
 	/**
@@ -122,7 +194,7 @@ class SepaValidator {
 	 * @param Widget $objWidget
 	 * @return bool
 	 */
-	public function validateBIC($value, Widget $objWidget)
+	public function validateBic($value, Widget $objWidget)
 	{
 		$valid = (preg_match('/^[a-z]{4}[a-z]{2}[0-9a-z]{2}([0-9a-z]{3})?\z/i', $value) > 0);
 
@@ -135,154 +207,92 @@ class SepaValidator {
 	}
 
 	/**
-	 * Get the iban length for a specific country
-	 *
-	 * @param string $country Country ISO 2 code
-	 * @return int|null
+	 * @param string $iban
+	 * @return string
 	 */
-	public function getIBANLength($country)
+	protected function normalizeIban($iban)
 	{
-		$data = $this->getIBANLengths();
+		return strtoupper(preg_replace('/[^\da-z]/i', '', $iban));
+	}
 
-		if ( ! isset($data[$country]))
+	/**
+	 * Check if the provided IBAN has a known country code.
+	 *
+	 * Provide a normalized IBAN using normalizeIBAN().
+	 *
+	 * @param string $iban
+	 * @return bool
+	 */
+	protected function checkIbanCountryCode($iban)
+	{
+		if (strlen($iban) < 2)
 		{
-			return null;
+			return false;
 		}
 
-		return $data[$country];
+		$country = substr($iban, 0, 2);
+
+		return isset($this->lengthMappings[$country]);
 	}
 
 	/**
-	 * Returns array with iban character lengths for each country
+	 * Check if the given iban has the correct length.
 	 *
-	 * Array key: country ISO 2 code
-	 * Array value: iban length
+	 * Provide a normalized IBAN using normalizeIBAN().
 	 *
-	 * @return array
+	 * @param string $iban
+	 * @return bool
 	 */
-	public function getIBANLengths()
+	protected function checkIbanLength($iban)
 	{
-		return array
-		(
-			'al' => 28,
-			'ad' => 24,
-			'at' => 20,
-			'az' => 28,
-			'bh' => 22,
-			'be' => 26,
-			'ba' => 20,
-			'br' => 29,
-			'bg' => 22,
-			'cr' => 21,
-			'hr' => 21,
-			'cy' => 28,
-			'cz' => 24,
-			'dk' => 18,
-			'do' => 28,
-			'ee' => 20,
-			'fo' => 18,
-			'fi' => 18,
-			'fr' => 27,
-			'ge' => 22,
-			'de' => 22,
-			'gi' => 23,
-			'gr' => 27,
-			'gl' => 18,
-			'gt' => 28,
-			'hu' => 28,
-			'is' => 26,
-			'ie' => 22,
-			'il' => 23,
-			'it' => 27,
-			'jo' => 30,
-			'kz' => 20,
-			'kw' => 30,
-			'lv' => 21,
-			'lb' => 28,
-			'li' => 21,
-			'lt' => 20,
-			'lu' => 20,
-			'mk' => 19,
-			'mt' => 31,
-			'mr' => 27,
-			'mu' => 30,
-			'mc' => 27,
-			'md' => 24,
-			'me' => 22,
-			'nl' => 18,
-			'no' => 15,
-			'pk' => 24,
-			'ps' => 29,
-			'pl' => 28,
-			'pt' => 25,
-			'qa' => 29,
-			'ro' => 24,
-			'sm' => 27,
-			'sa' => 24,
-			'rs' => 22,
-			'sk' => 24,
-			'si' => 19,
-			'es' => 24,
-			'se' => 24,
-			'ch' => 21,
-			'tn' => 24,
-			'tr' => 26,
-			'ae' => 23,
-			'gb' => 22,
-			'vg' => 24
-		);
-	}
+		$country = substr($iban, 0, 2);
 
-	/**
-	 * @param string $letter
-	 * @return int|null
-	 */
-	public function getIBANMapping($letter)
-	{
-		$data = $this->getIBANMappings();
-
-		// parameter is not a letter
-		if ( ! isset($data[$letter]))
+		if ( ! isset($this->lengthMappings[$country]))
 		{
-			return null;
+			return false;
 		}
 
-		return $data[$letter];
+		return strlen($iban) === $this->lengthMappings[$country];
 	}
 
 	/**
-	 * @return array
+	 * Validate the check digits of an IBAN.
+	 *
+	 * Provide a normalized IBAN using normalizeIBAN().
+	 *
+	 * @param string $iban
+	 * @return bool
 	 */
-	public function getIBANMappings()
+	protected function checkIbanDigits($iban)
 	{
-		return array(
-			'a' => 10,
-			'b' => 11,
-			'c' => 12,
-			'd' => 13,
-			'e' => 14,
-			'f' => 15,
-			'g' => 16,
-			'h' => 17,
-			'i' => 18,
-			'j' => 19,
-			'k' => 20,
-			'l' => 21,
-			'm' => 22,
-			'n' => 23,
-			'o' => 24,
-			'p' => 25,
-			'q' => 26,
-			'r' => 27,
-			's' => 28,
-			't' => 29,
-			'u' => 30,
-			'v' => 31,
-			'w' => 32,
-			'x' => 33,
-			'y' => 34,
-			'z' => 35
-		);
+		// move first 4 characters to the right
+		$transformed = substr($iban, 4) . substr($iban, 0, 4);
+
+		// replace letters by digits
+		$transformed = str_replace(array_keys($this->letterMappings), $this->letterMappings, $transformed);
+
+		// calculate Apply mod 97
+		return $this->bcmod($transformed, 97) === 1;
+	}
+
+	/**
+	 * @see http://php.net/manual/de/function.bcmod.php#38474
+	 * @param int $left
+	 * @param int $modulus
+	 * @return int
+	 */
+	protected function bcmod($left, $modulus)
+	{
+		$take = 8;
+		$result = null;
+
+		do {
+			$a = (int)$result . substr($left, 0, $take);
+			$left = substr($left, $take);
+			$result = $a % $modulus;
+		} while (strlen($left));
+
+		return (int)$result;
 	}
 
 	/**
