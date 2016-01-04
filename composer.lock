@@ -1,38 +1,41 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab41ee4c9aae6bc52b4c47b84ded99b8",
+    "hash": "c517804184208fb296be3ce09189cf4a",
+    "content-hash": "a93ac8b77bafb0cbe1ada4635ff9b568",
     "packages": [
         {
             "name": "codefog/contao-haste",
-            "version": "4.6.0",
+            "version": "4.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codefog/contao-haste.git",
-                "reference": "ebf15ce58d82fda96b4c81e2b6d5c9bb1b458897"
+                "reference": "b48d7e50251b28e6a0a0b0aefb99132fc00d5fff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codefog/contao-haste/zipball/ebf15ce58d82fda96b4c81e2b6d5c9bb1b458897",
-                "reference": "ebf15ce58d82fda96b4c81e2b6d5c9bb1b458897",
+                "url": "https://api.github.com/repos/codefog/contao-haste/zipball/b48d7e50251b28e6a0a0b0aefb99132fc00d5fff",
+                "reference": "b48d7e50251b28e6a0a0b0aefb99132fc00d5fff",
                 "shasum": ""
             },
             "require": {
                 "contao-community-alliance/composer-plugin": "2.*",
                 "contao/core": ">=3.2",
-                "php": ">=5.3.2",
-                "terminal42/contao-namespace-class-loader": "1.*"
+                "php": ">=5.3.2"
             },
             "replace": {
                 "contao-legacy/haste": "self.version"
             },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8@dev"
+            },
             "type": "contao-module",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "4.6.x-dev"
+                    "dev-develop": "4.8.x-dev"
                 },
                 "contao": {
                     "sources": {
@@ -46,7 +49,7 @@
             "autoload": {
                 "psr-0": {
                     "Haste\\": [
-                        "system/modules/haste/library/"
+                        "library/"
                     ]
                 }
             },
@@ -69,24 +72,24 @@
                 "contao",
                 "haste"
             ],
-            "time": "2015-03-16 10:06:43"
+            "time": "2015-12-15 12:15:25"
         },
         {
             "name": "contao-community-alliance/composer-plugin",
-            "version": "2.3.3",
+            "version": "2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/contao-community-alliance/composer-plugin.git",
-                "reference": "0af8ad67c9c584adda04cf5643ade7c38056c2c4"
+                "reference": "346f5a421e272897e47bcc45f2c92077352df33c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contao-community-alliance/composer-plugin/zipball/0af8ad67c9c584adda04cf5643ade7c38056c2c4",
-                "reference": "0af8ad67c9c584adda04cf5643ade7c38056c2c4",
+                "url": "https://api.github.com/repos/contao-community-alliance/composer-plugin/zipball/346f5a421e272897e47bcc45f2c92077352df33c",
+                "reference": "346f5a421e272897e47bcc45f2c92077352df33c",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "1.0.0",
+                "composer-plugin-api": "^1.0",
                 "php": ">=5.3.2"
             },
             "conflict": {
@@ -97,11 +100,9 @@
                 "contao-community-alliance/composer-installer": "1.7.1"
             },
             "require-dev": {
-                "composer/composer": "dev-master",
-                "contao-community-alliance/build-system": "~1.0",
-                "contao-community-alliance/build-system-all-tasks": "~1.0",
-                "contao-community-alliance/coding-standard": "~1.0",
-                "contao/core": ">=2.11,<4.0"
+                "composer/composer": "~1.0@dev",
+                "contao/core": ">=2.11,<4.0",
+                "phpcq/all-tasks": "~1.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -122,7 +123,7 @@
             ],
             "description": "Composer plugin that provide contao integration and installer.",
             "homepage": "http://c-c-a.org/",
-            "time": "2014-11-26 06:24:53"
+            "time": "2015-10-28 11:38:10"
         },
         {
             "name": "contao-components/compass",
@@ -154,20 +155,20 @@
         },
         {
             "name": "contao/core",
-            "version": "3.4.4",
+            "version": "3.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/contao-community-alliance/composerized-contao-core.git",
-                "reference": "b1814bf71b2d2af1598ceb8be9102369bc2338e4"
+                "reference": "6c4305709c6a5411dfd24a437b1837bd7668d23e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contao-community-alliance/composerized-contao-core/zipball/b1814bf71b2d2af1598ceb8be9102369bc2338e4",
-                "reference": "b1814bf71b2d2af1598ceb8be9102369bc2338e4",
+                "url": "https://api.github.com/repos/contao-community-alliance/composerized-contao-core/zipball/6c4305709c6a5411dfd24a437b1837bd7668d23e",
+                "reference": "6c4305709c6a5411dfd24a437b1837bd7668d23e",
                 "shasum": ""
             },
             "require": {
-                "contao-community-alliance/composer-plugin": "*",
+                "contao-community-alliance/composer-plugin": "~2.0",
                 "contao-components/compass": "~0.12",
                 "leafo/scssphp": "~0.1",
                 "michelf/php-markdown": "~1.4",
@@ -179,10 +180,20 @@
                 "tecnick.com/tcpdf": "~6.0",
                 "true/punycode": "~1.0"
             },
+            "replace": {
+                "contao/calendar-bundle": "self.version",
+                "contao/comments-bundle": "self.version",
+                "contao/core-bundle": "self.version",
+                "contao/faq-bundle": "self.version",
+                "contao/listing-bundle": "self.version",
+                "contao/news-bundle": "self.version",
+                "contao/newsletter-bundle": "self.version"
+            },
             "type": "project",
             "autoload": {
                 "classmap": [
-                    "system/modules"
+                    "system/modules",
+                    "system/helper/interface.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -201,20 +212,20 @@
                 "contao",
                 "core"
             ],
-            "time": "2015-02-12 13:00:46"
+            "time": "2015-12-07 22:13:40"
         },
         {
             "name": "isotope/isotope-core",
-            "version": "2.2.3",
+            "version": "2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/isotope/core.git",
-                "reference": "465ab1b93976b0c14220bd7eb487952680e7c674"
+                "reference": "e3b6293c5e2599adf2489f23a969160eb143d876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/isotope/core/zipball/465ab1b93976b0c14220bd7eb487952680e7c674",
-                "reference": "465ab1b93976b0c14220bd7eb487952680e7c674",
+                "url": "https://api.github.com/repos/isotope/core/zipball/e3b6293c5e2599adf2489f23a969160eb143d876",
+                "reference": "e3b6293c5e2599adf2489f23a969160eb143d876",
                 "shasum": ""
             },
             "require": {
@@ -282,44 +293,42 @@
                 "contao",
                 "isotope"
             ],
-            "time": "2015-03-17 11:01:52"
+            "time": "2015-08-11 13:42:27"
         },
         {
             "name": "leafo/scssphp",
-            "version": "v0.1.1",
+            "version": "v0.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/scssphp.git",
-                "reference": "8c08da585537e97efd528c7d278463d2b9396371"
+                "reference": "feecdbe1defcd89089e51bf89bf77e0332658517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafo/scssphp/zipball/8c08da585537e97efd528c7d278463d2b9396371",
-                "reference": "8c08da585537e97efd528c7d278463d2b9396371",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/feecdbe1defcd89089e51bf89bf77e0332658517",
+                "reference": "feecdbe1defcd89089e51bf89bf77e0332658517",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "kherge/box": "~2.5",
+                "phpunit/phpunit": "~3.7",
+                "squizlabs/php_codesniffer": "~2.5"
             },
             "bin": [
                 "bin/pscss"
             ],
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "classmap.php"
-                ],
                 "psr-4": {
                     "Leafo\\ScssPhp\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT",
-                "GPL-3.0"
+                "MIT"
             ],
             "authors": [
                 {
@@ -329,7 +338,7 @@
                 }
             ],
             "description": "scssphp is a compiler for SCSS written in PHP.",
-            "homepage": "http://leafo.net/scssphp/",
+            "homepage": "http://leafo.github.io/scssphp/",
             "keywords": [
                 "css",
                 "less",
@@ -337,20 +346,20 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2014-08-12 22:41:53"
+            "time": "2015-12-16 22:46:24"
         },
         {
             "name": "menatwork/contao-multicolumnwizard",
-            "version": "3.3.0",
+            "version": "3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/menatwork/MultiColumnWizard.git",
-                "reference": "413d3fa95a6f1ea60c91a28ff24bccb9efab4416"
+                "reference": "7a7b0dc81657fb0744c4af4d6340d5638cd956a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/menatwork/MultiColumnWizard/zipball/413d3fa95a6f1ea60c91a28ff24bccb9efab4416",
-                "reference": "413d3fa95a6f1ea60c91a28ff24bccb9efab4416",
+                "url": "https://api.github.com/repos/menatwork/MultiColumnWizard/zipball/7a7b0dc81657fb0744c4af4d6340d5638cd956a2",
+                "reference": "7a7b0dc81657fb0744c4af4d6340d5638cd956a2",
                 "shasum": ""
             },
             "require": {
@@ -423,20 +432,20 @@
                 "widget",
                 "wizard"
             ],
-            "time": "2014-11-20 11:58:37"
+            "time": "2015-06-08 08:31:58"
         },
         {
             "name": "michelf/php-markdown",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michelf/php-markdown.git",
-                "reference": "e1aabe18173231ebcefc90e615565742fc1c7fd9"
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/e1aabe18173231ebcefc90e615565742fc1c7fd9",
-                "reference": "e1aabe18173231ebcefc90e615565742fc1c7fd9",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/156e56ee036505ec637d761ee62dc425d807183c",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c",
                 "shasum": ""
             },
             "require": {
@@ -459,14 +468,14 @@
             ],
             "authors": [
                 {
-                    "name": "John Gruber",
-                    "homepage": "http://daringfireball.net/"
-                },
-                {
                     "name": "Michel Fortin",
                     "email": "michel.fortin@michelf.ca",
                     "homepage": "https://michelf.ca/",
                     "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
                 }
             ],
             "description": "PHP Markdown",
@@ -474,24 +483,27 @@
             "keywords": [
                 "markdown"
             ],
-            "time": "2015-03-01 12:03:08"
+            "time": "2015-12-24 01:37:31"
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.3",
+            "version": "v1.7.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "6e08ecb07e6f6d9170c23e8744c58fdd822ad0de"
+                "reference": "a1e2d3c20794b37ac4d0baeb24613e579584033b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/6e08ecb07e6f6d9170c23e8744c58fdd822ad0de",
-                "reference": "6e08ecb07e6f6d9170c23e8744c58fdd822ad0de",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/a1e2d3c20794b37ac4d0baeb24613e579584033b",
+                "reference": "a1e2d3c20794b37ac4d0baeb24613e579584033b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.18"
             },
             "bin": [
                 "bin/lessc"
@@ -533,7 +545,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-03-10 18:12:59"
+            "time": "2015-12-30 05:47:36"
         },
         {
             "name": "phpspec/php-diff",
@@ -625,23 +637,23 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.0",
+            "version": "v5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f"
+                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/31454f258f10329ae7c48763eb898a75c39e0a9f",
-                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/0697e6aa65c83edf97bb0f23d8763f94e3f11421",
+                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1"
+                "mockery/mockery": "~0.9.1,<0.9.4"
             },
             "type": "library",
             "extra": {
@@ -670,23 +682,24 @@
             "description": "Swiftmailer, free feature-rich PHP mailer",
             "homepage": "http://swiftmailer.org",
             "keywords": [
+                "email",
                 "mail",
                 "mailer"
             ],
-            "time": "2015-03-14 06:06:39"
+            "time": "2015-06-06 14:19:39"
         },
         {
             "name": "tecnick.com/tcpdf",
-            "version": "6.2.6",
+            "version": "6.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "a2e8f5b505a7a14a4ed960313c4baf699fd1f4bb"
+                "reference": "354433a33946ae7497c3eab291eaaf814bccbfab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/a2e8f5b505a7a14a4ed960313c4baf699fd1f4bb",
-                "reference": "a2e8f5b505a7a14a4ed960313c4baf699fd1f4bb",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/354433a33946ae7497c3eab291eaaf814bccbfab",
+                "reference": "354433a33946ae7497c3eab291eaaf814bccbfab",
                 "shasum": ""
             },
             "require": {
@@ -736,7 +749,8 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2015-01-28 18:51:40"
+            "abandoned": "tecnickcom/tcpdf",
+            "time": "2015-08-02 12:30:27"
         },
         {
             "name": "terminal42/contao-conditionalselectmenu",
@@ -892,16 +906,16 @@
         },
         {
             "name": "terminal42/dc_multilingual",
-            "version": "2.0.0",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/terminal42/contao-DC_Multilingual.git",
-                "reference": "ce2302dc1b963bcff54d7cc4756a01b6ce48031b"
+                "reference": "23b0e3c47d8e1a2f0214a51178a1fe57c0688a8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/terminal42/contao-DC_Multilingual/zipball/ce2302dc1b963bcff54d7cc4756a01b6ce48031b",
-                "reference": "ce2302dc1b963bcff54d7cc4756a01b6ce48031b",
+                "url": "https://api.github.com/repos/terminal42/contao-DC_Multilingual/zipball/23b0e3c47d8e1a2f0214a51178a1fe57c0688a8f",
+                "reference": "23b0e3c47d8e1a2f0214a51178a1fe57c0688a8f",
                 "shasum": ""
             },
             "require": {
@@ -940,25 +954,25 @@
                 "driver",
                 "multilingual"
             ],
-            "time": "2014-09-02 09:14:47"
+            "time": "2015-12-01 17:57:28"
         },
         {
             "name": "terminal42/dcawizard",
-            "version": "2.3.0",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/terminal42/contao-dcawizard.git",
-                "reference": "05d8cb25b34177b4faf3bf68affd961a105be580"
+                "reference": "572169b07e3ae21b6edfddd1e4f030cfd9b74264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/terminal42/contao-dcawizard/zipball/05d8cb25b34177b4faf3bf68affd961a105be580",
-                "reference": "05d8cb25b34177b4faf3bf68affd961a105be580",
+                "url": "https://api.github.com/repos/terminal42/contao-dcawizard/zipball/572169b07e3ae21b6edfddd1e4f030cfd9b74264",
+                "reference": "572169b07e3ae21b6edfddd1e4f030cfd9b74264",
                 "shasum": ""
             },
             "require": {
+                "codefog/contao-haste": "4.*",
                 "contao-community-alliance/composer-plugin": "2.*",
-                "contao-legacy/haste": "4.*",
                 "contao/core": ">=3.2",
                 "php": ">=5.3.2"
             },
@@ -995,28 +1009,27 @@
                 "dcawizard",
                 "wizard"
             ],
-            "time": "2014-11-20 13:31:35"
+            "time": "2015-12-04 09:33:17"
         },
         {
             "name": "terminal42/notification_center",
-            "version": "1.2.2",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/terminal42/contao-notification_center.git",
-                "reference": "856945ea0ba7cfb9acd031e600127e76e0ffbce6"
+                "reference": "3dcf209c51b9bf1a9f47d6e1d24d7df704228bb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/terminal42/contao-notification_center/zipball/856945ea0ba7cfb9acd031e600127e76e0ffbce6",
-                "reference": "856945ea0ba7cfb9acd031e600127e76e0ffbce6",
+                "url": "https://api.github.com/repos/terminal42/contao-notification_center/zipball/3dcf209c51b9bf1a9f47d6e1d24d7df704228bb6",
+                "reference": "3dcf209c51b9bf1a9f47d6e1d24d7df704228bb6",
                 "shasum": ""
             },
             "require": {
-                "codefog/contao-haste": "4.*",
-                "contao-community-alliance/composer-installer": "*",
-                "contao/core": ">=3.2",
+                "codefog/contao-haste": "^4.10.0",
+                "contao-community-alliance/composer-plugin": "2.*",
+                "contao/core": "^3.2",
                 "php": ">=5.3.2",
-                "terminal42/contao-namespace-class-loader": ">=1.0.1",
                 "terminal42/dcawizard": "2.*"
             },
             "replace": {
@@ -1039,9 +1052,12 @@
             "autoload": {
                 "psr-0": {
                     "NotificationCenter\\": [
-                        "/library"
+                        "library/"
                     ]
-                }
+                },
+                "classmap": [
+                    "classes/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1059,7 +1075,7 @@
                 "contao",
                 "notification"
             ],
-            "time": "2015-03-13 09:34:08"
+            "time": "2015-10-14 10:50:04"
         },
         {
             "name": "true/punycode",

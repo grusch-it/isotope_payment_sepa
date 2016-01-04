@@ -15,8 +15,8 @@ $GLOBALS['TL_DCA']['tl_iso_payment']['palettes']['sepa'] = '{type_legend},name,l
 
 $GLOBALS['TL_DCA']['tl_iso_payment']['fields']['sepa_persist'] = array
 (
-	'label'                 => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_persist'],
-	'exclude'               => true,
-	'inputType'             => 'checkbox',
-	'sql'                   => "char(1) NOT NULL default ''"
+	'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_persist'],
+	'exclude'   => true,
+	'inputType' => 'checkbox',
+	'sql'       => "char(1) NOT NULL default ''",
 );

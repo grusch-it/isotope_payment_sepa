@@ -22,16 +22,17 @@ use Isotope\Model\ProductCollection;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015
+ * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-class SepaPaymentEventHandler {
+class SepaPaymentEventHandler
+{
 
 	/**
 	 * Adds account holder, IBAN (raw & masked) and BIC to the notification tokens.
 	 *
 	 * @param ProductCollection $objOrder
-	 * @param array             $arrTokens
+	 * @param array $arrTokens
 	 * @return array
 	 */
 	public function onGetNotificationTokens(ProductCollection $objOrder, $arrTokens)
@@ -53,7 +54,7 @@ class SepaPaymentEventHandler {
 	 * Removes bank account data from the session.
 	 *
 	 * @param ProductCollection $objOrder
-	 * @param array             $arrTokens
+	 * @param array $arrTokens
 	 */
 	public function onPostCheckout(ProductCollection $objOrder, $arrTokens)
 	{

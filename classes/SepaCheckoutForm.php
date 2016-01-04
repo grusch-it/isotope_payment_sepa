@@ -27,10 +27,11 @@ use Isotope\Template;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015
+ * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-class SepaCheckoutForm extends Frontend {
+class SepaCheckoutForm extends Frontend
+{
 
 	/**
 	 * @var string
@@ -72,7 +73,7 @@ class SepaCheckoutForm extends Frontend {
 		parent::__construct();
 
 		$this->Template = new Template($this->strTemplate);
-		$this->blnTableless = (bool) $blnTableless;
+		$this->blnTableless = (bool)$blnTableless;
 
 		$this->Template->action = Checkout::generateUrlForStep('process');
 		$this->Template->method = 'post';
@@ -148,9 +149,7 @@ class SepaCheckoutForm extends Frontend {
 			if ($objWidget->hasErrors())
 			{
 				$blnValid = false;
-			}
-
-			// Store current value in the session
+			} // Store current value in the session
 			elseif ($objWidget->submitInput())
 			{
 				self::remember($strName, $strValue);
@@ -164,7 +163,7 @@ class SepaCheckoutForm extends Frontend {
 	/**
 	 * Save a form field value to the session.
 	 *
-	 * @param string $strKey   The name of the form field
+	 * @param string $strKey The name of the form field
 	 * @param string $strValue The value to be remembered
 	 */
 	public static function remember($strKey, $strValue)
@@ -233,7 +232,7 @@ class SepaCheckoutForm extends Frontend {
 	 * Create a form field widget
 	 *
 	 * @param string $strName
-	 * @param array  $arrField
+	 * @param array $arrField
 	 * @return Widget|null
 	 */
 	protected function createWidget($strName, $arrField)
@@ -249,7 +248,7 @@ class SepaCheckoutForm extends Frontend {
 		$objWidget = new $strClass($arrField['eval']);
 		$objWidget->id = $strName;
 		$objWidget->name = $strName;
-		$objWidget->tableless = (bool) $this->blnTableless;
+		$objWidget->tableless = (bool)$this->blnTableless;
 		$objWidget->label = $arrField['label'];
 
 		return $objWidget;
@@ -274,25 +273,25 @@ class SepaCheckoutForm extends Frontend {
 			(
 				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_holder'],
 				'inputType' => 'text',
-				'eval'      => array('mandatory' => true)
+				'eval'      => array('mandatory' => true),
 			),
 			'sepa_iban'   => array
 			(
 				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_iban'],
 				'inputType' => 'text',
-				'eval'      => array('mandatory' => true, 'rgxp' => 'sepa_iban', 'encrypt' => true)
+				'eval'      => array('mandatory' => true, 'rgxp' => 'sepa_iban', 'encrypt' => true),
 			),
 			'sepa_bic'    => array
 			(
 				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_bic'],
 				'inputType' => 'text',
-				'eval'      => array('mandatory' => false, 'rgxp' => 'sepa_bic')
+				'eval'      => array('mandatory' => false, 'rgxp' => 'sepa_bic'),
 			),
 			'nextStep'    => array
 			(
 				'label'     => &$GLOBALS['TL_LANG']['tl_iso_payment']['sepa_submit'],
-				'inputType' => 'submit'
-			)
+				'inputType' => 'submit',
+			),
 		);
 	}
 }

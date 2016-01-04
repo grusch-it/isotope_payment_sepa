@@ -27,17 +27,17 @@ use Isotope\Model\ProductCollection\Order;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015
+ * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-
-class SepaPayment extends Payment implements IsotopePayment {
+class SepaPayment extends Payment implements IsotopePayment
+{
 
 	/**
 	 * Process payment on checkout confirmation page.
 	 *
-	 * @param   IsotopeProductCollection $objOrder  The order being placed
-	 * @param   \Module                  $objModule The checkout module instance
+	 * @param   IsotopeProductCollection $objOrder The order being placed
+	 * @param   \Module $objModule The checkout module instance
 	 * @return  bool
 	 */
 	public function processPayment(IsotopeProductCollection $objOrder, \Module $objModule)
@@ -67,8 +67,8 @@ class SepaPayment extends Payment implements IsotopePayment {
 	/**
 	 * Return a html form for checkout
 	 *
-	 * @param IsotopeProductCollection $objOrder  The order being placed
-	 * @param \Module                  $objModule The checkout module instance
+	 * @param IsotopeProductCollection $objOrder The order being placed
+	 * @param \Module $objModule The checkout module instance
 	 * @return bool|string
 	 */
 	public function checkoutForm(IsotopeProductCollection $objOrder, \Module $objModule)
@@ -106,6 +106,15 @@ class SepaPayment extends Payment implements IsotopePayment {
 	}
 
 	/**
+	 * @param string $strRaw
+	 * @return string
+	 */
+	public static function normalizeIBAN($strRaw)
+	{
+		return strtoupper(preg_replace('/[^\da-z]/i', '', $strRaw));
+	}
+
+	/**
 	 * Retrieve masked IBAN code
 	 *
 	 * The country code and the first 4 and last 4 digits will be preserved.
@@ -117,11 +126,11 @@ class SepaPayment extends Payment implements IsotopePayment {
 	 */
 	public static function maskIBAN($strRaw, $strChar = 'X')
 	{
-		$normalized = str_replace(' ', '', $strRaw);
+		$normalized = self::normalizeIBAN($strRaw);
 		$cut = preg_replace('/^([a-z]{2}[0-9]{4})([0-9]+)([0-9]{4})$/i', '\1\3', $normalized);
 
 		$first = substr($cut, 0, 6);
-		$middle = str_repeat($strChar, strlen($normalized) - 10);
+		$middle = str_repeat($strChar, max(0, strlen($normalized) - 10));
 		$last = substr($cut, 6);
 
 		return $first . $middle . $last;

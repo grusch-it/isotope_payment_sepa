@@ -23,10 +23,11 @@ use Serializable;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015
+ * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-class SepaPaymentBag implements Serializable {
+class SepaPaymentBag implements Serializable
+{
 
 	/**
 	 * @var array
@@ -61,7 +62,7 @@ class SepaPaymentBag implements Serializable {
 	 * Automatically encrypts the value before saving, if
 	 * encryption is enabled for the form field.
 	 *
-	 * @param string $strKey   The name of the form field
+	 * @param string $strKey The name of the form field
 	 * @param string $strValue The value to be saved
 	 */
 	public function put($strKey, $strValue)
@@ -92,13 +93,36 @@ class SepaPaymentBag implements Serializable {
 	}
 
 	/**
+	 * Retrieve all values.
+	 *
+	 * @param bool $blnDecrypt Automatically decrypt values
+	 * @return array
+	 */
+	public function all($blnDecrypt = true)
+	{
+		$arrData = array();
+		foreach (SepaCheckoutForm::getFieldConfigurations() as $strName => $arrField)
+		{
+			// do not return submit button values
+			if (isset($arrField['inputType']) && $arrField['inputType'] == 'submit')
+			{
+				continue;
+			}
+
+			$arrData[$strName] = $this->get($strName, $blnDecrypt);
+		}
+
+		return $arrData;
+	}
+
+	/**
 	 * Retrieve a value.
 	 *
 	 * Automatically decrypts an encrypted value, if
 	 * encryption is enabled for the form field.
 	 *
-	 * @param string $strKey        The form fields name
-	 * @param bool   $blnDecrypt    Automatically decrypt value
+	 * @param string $strKey The form fields name
+	 * @param bool $blnDecrypt Automatically decrypt value
 	 * @return mixed|null
 	 */
 	public function get($strKey, $blnDecrypt = true)
@@ -135,29 +159,6 @@ class SepaPaymentBag implements Serializable {
 	}
 
 	/**
-	 * Retrieve all values.
-	 *
-	 * @param bool $blnDecrypt  Automatically decrypt values
-	 * @return array
-	 */
-	public function all($blnDecrypt = true)
-	{
-		$arrData = array();
-		foreach (SepaCheckoutForm::getFieldConfigurations() as $strName => $arrField)
-		{
-			// do not return submit button values
-			if (isset($arrField['inputType']) && $arrField['inputType'] == 'submit')
-			{
-				continue;
-			}
-
-			$arrData[$strName] = $this->get($strName, $blnDecrypt);
-		}
-
-		return $arrData;
-	}
-
-	/**
 	 * Remove a value from the session.
 	 *
 	 * @param string $strKey
@@ -171,11 +172,7 @@ class SepaPaymentBag implements Serializable {
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.1.0)<br/>
-	 * String representation of object
-	 *
-	 * @link http://php.net/manual/en/serializable.serialize.php
-	 * @return string the string representation of the object or null
+	 * @inheritdoc
 	 */
 	public function serialize()
 	{
@@ -183,14 +180,7 @@ class SepaPaymentBag implements Serializable {
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.1.0)<br/>
-	 * Constructs the object
-	 *
-	 * @link http://php.net/manual/en/serializable.unserialize.php
-	 * @param string $serialized <p>
-	 *                           The string representation of the object.
-	 *                           </p>
-	 * @return void
+	 * @inheritdoc
 	 */
 	public function unserialize($serialized)
 	{
