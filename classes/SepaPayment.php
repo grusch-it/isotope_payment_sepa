@@ -106,6 +106,15 @@ class SepaPayment extends Payment implements IsotopePayment {
 	}
 
 	/**
+	 * @param string $strRaw
+	 * @return string
+	 */
+	public static function normalizeIBAN($strRaw)
+	{
+		return strtoupper(preg_replace('/[^\da-z]/i', '', $strRaw));
+	}
+
+	/**
 	 * Retrieve masked IBAN code
 	 *
 	 * The country code and the first 4 and last 4 digits will be preserved.
@@ -117,7 +126,7 @@ class SepaPayment extends Payment implements IsotopePayment {
 	 */
 	public static function maskIBAN($strRaw, $strChar = 'X')
 	{
-		$normalized = str_replace(' ', '', $strRaw);
+		$normalized = self::normalizeIBAN($strRaw);
 		$cut = preg_replace('/^([a-z]{2}[0-9]{4})([0-9]+)([0-9]{4})$/i', '\1\3', $normalized);
 
 		$first = substr($cut, 0, 6);

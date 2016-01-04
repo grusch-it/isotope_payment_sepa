@@ -159,7 +159,7 @@ class SepaValidator {
 	 */
 	public function validateIban($value, Widget $objWidget = null)
 	{
-		$iban = $this->normalizeIban($value);
+		$iban = SepaPayment::normalizeIBAN($value);
 
 		// invalid or unkown country code
 		if ( ! $this->checkIbanCountryCode($iban))
@@ -204,15 +204,6 @@ class SepaValidator {
 		}
 
 		return $valid;
-	}
-
-	/**
-	 * @param string $iban
-	 * @return string
-	 */
-	protected function normalizeIban($iban)
-	{
-		return strtoupper(preg_replace('/[^\da-z]/i', '', $iban));
 	}
 
 	/**
