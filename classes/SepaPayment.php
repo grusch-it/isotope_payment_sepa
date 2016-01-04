@@ -130,7 +130,7 @@ class SepaPayment extends Payment implements IsotopePayment {
 		$cut = preg_replace('/^([a-z]{2}[0-9]{4})([0-9]+)([0-9]{4})$/i', '\1\3', $normalized);
 
 		$first = substr($cut, 0, 6);
-		$middle = str_repeat($strChar, strlen($normalized) - 10);
+		$middle = str_repeat($strChar, max(0, strlen($normalized) - 10));
 		$last = substr($cut, 6);
 
 		return $first . $middle . $last;
