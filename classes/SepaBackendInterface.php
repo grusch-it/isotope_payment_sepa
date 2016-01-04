@@ -29,8 +29,8 @@ use Isotope\Template;
  * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-
-class SepaBackendInterface extends Frontend {
+class SepaBackendInterface extends Frontend
+{
 
 	/**
 	 * @var string

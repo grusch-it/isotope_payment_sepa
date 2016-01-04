@@ -23,12 +23,13 @@ use Contao\Widget;
  * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-class SepaValidator {
+class SepaValidator
+{
 
 	/**
 	 * @var array
 	 */
-	protected $letterMappings = [
+	protected $letterMappings = array(
 		'A' => 10,
 		'B' => 11,
 		'C' => 12,
@@ -55,7 +56,7 @@ class SepaValidator {
 		'X' => 33,
 		'Y' => 34,
 		'Z' => 35,
-	];
+	);
 
 	/**
 	 * @var array
@@ -126,7 +127,7 @@ class SepaValidator {
 		'SM' => 27,
 		'TN' => 24,
 		'TR' => 26,
-		'VG' => 24
+		'VG' => 24,
 	);
 
 	/**
@@ -137,7 +138,7 @@ class SepaValidator {
 	 */
 	public function validate($rgxp, $value, Widget $objWidget)
 	{
-		switch ( strtolower($rgxp) )
+		switch (strtolower($rgxp))
 		{
 			case 'sepa_iban':
 				return $this->validateIban($value, $objWidget);
@@ -277,7 +278,8 @@ class SepaValidator {
 		$take = 8;
 		$result = null;
 
-		do {
+		do
+		{
 			$a = (int)$result . substr($left, 0, $take);
 			$left = substr($left, $take);
 			$result = $a % $modulus;

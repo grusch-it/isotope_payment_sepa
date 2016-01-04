@@ -30,14 +30,14 @@ use Isotope\Model\ProductCollection\Order;
  * @copyright  Michael Gruschwitz 2015-2016
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
-
-class SepaPayment extends Payment implements IsotopePayment {
+class SepaPayment extends Payment implements IsotopePayment
+{
 
 	/**
 	 * Process payment on checkout confirmation page.
 	 *
-	 * @param   IsotopeProductCollection $objOrder  The order being placed
-	 * @param   \Module                  $objModule The checkout module instance
+	 * @param   IsotopeProductCollection $objOrder The order being placed
+	 * @param   \Module $objModule The checkout module instance
 	 * @return  bool
 	 */
 	public function processPayment(IsotopeProductCollection $objOrder, \Module $objModule)
@@ -67,8 +67,8 @@ class SepaPayment extends Payment implements IsotopePayment {
 	/**
 	 * Return a html form for checkout
 	 *
-	 * @param IsotopeProductCollection $objOrder  The order being placed
-	 * @param \Module                  $objModule The checkout module instance
+	 * @param IsotopeProductCollection $objOrder The order being placed
+	 * @param \Module $objModule The checkout module instance
 	 * @return bool|string
 	 */
 	public function checkoutForm(IsotopeProductCollection $objOrder, \Module $objModule)
