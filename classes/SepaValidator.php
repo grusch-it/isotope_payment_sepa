@@ -264,28 +264,7 @@ class SepaValidator
 		$transformed = str_replace(array_keys($this->letterMappings), $this->letterMappings, $transformed);
 
 		// calculate Apply mod 97
-		return $this->bcmod($transformed, 97) === 1;
-	}
-
-	/**
-	 * @see http://php.net/manual/de/function.bcmod.php#38474
-	 * @param int $left
-	 * @param int $modulus
-	 * @return int
-	 */
-	protected function bcmod($left, $modulus)
-	{
-		$take = 8;
-		$result = null;
-
-		do
-		{
-			$a = (int)$result . substr($left, 0, $take);
-			$left = substr($left, $take);
-			$result = $a % $modulus;
-		} while (strlen($left));
-
-		return (int)$result;
+		return (int)bcmod($transformed, 97) === 1;
 	}
 
 	/**
