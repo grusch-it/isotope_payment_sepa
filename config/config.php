@@ -8,7 +8,7 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 /**

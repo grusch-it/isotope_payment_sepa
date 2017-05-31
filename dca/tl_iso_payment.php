@@ -8,7 +8,7 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 $GLOBALS['TL_DCA']['tl_iso_payment']['palettes']['sepa'] = '{type_legend},name,label,type;{note_legend:hide},note;{config_legend},new_order_status,minimum_total,maximum_total,countries,shipping_modules,product_types,product_types_condition,config_ids;{gateway_legend},sepa_persist;{price_legend:hide},price,tax_class;{expert_legend:hide},guests,protected;{enabled_legend},enabled';

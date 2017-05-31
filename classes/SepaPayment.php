@@ -8,7 +8,7 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 namespace Gruschit;
@@ -17,7 +17,6 @@ use Contao\Input;
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
 use Isotope\Model\Payment;
-use Isotope\Model\ProductCollection;
 use Isotope\Model\ProductCollection\Order;
 
 /**
@@ -27,7 +26,7 @@ use Isotope\Model\ProductCollection\Order;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015-2016
+ * @copyright  Michael Gruschwitz 2015-2017
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
 class SepaPayment extends Payment implements IsotopePayment
