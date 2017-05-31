@@ -8,14 +8,16 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 /**
  * Module Name & Description
  */
-$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][0] = 'SEPA-Lastschrift';
-$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][1] = 'Fragt bei der Bestellung die Kontodaten (Inhaber, IBAN und BIC) des Kunden ab.';
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment']['sepa'] = array(
+	'SEPA-Lastschrift',
+	'Fragt bei der Bestellung die Kontodaten (Inhaber, IBAN und BIC) des Kunden ab.'
+);
 
 /**
  * Checkout Form Validation Errors

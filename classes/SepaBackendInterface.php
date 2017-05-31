@@ -8,7 +8,7 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 namespace Gruschit;
@@ -16,7 +16,6 @@ namespace Gruschit;
 use Contao\Environment;
 use Contao\Frontend;
 use Isotope\Interfaces\IsotopePayment;
-use Isotope\Model\Payment;
 use Isotope\Template;
 
 /**
@@ -26,7 +25,7 @@ use Isotope\Template;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015-2016
+ * @copyright  Michael Gruschwitz 2015-2017
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
 class SepaBackendInterface extends Frontend

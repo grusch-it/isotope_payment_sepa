@@ -8,15 +8,16 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 /**
  * Module Name & Description
  */
-
-$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][0] = 'SEPA';
-$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][1] = 'Collects bank account data from the customer.';
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment']['sepa'] = array(
+	'SEPA',
+	'Collects bank account data from the customer.'
+);
 
 /**
  * Checkout Form Validation Errors
