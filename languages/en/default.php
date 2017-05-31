@@ -14,9 +14,10 @@
 /**
  * Module Name & Description
  */
-
-$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][0] = 'SEPA';
-$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.sepa'][1] = 'Collects bank account data from the customer.';
+$GLOBALS['TL_LANG']['MODEL']['tl_iso_payment']['sepa'] = array(
+	'SEPA',
+	'Collects bank account data from the customer.'
+);
 
 /**
  * Checkout Form Validation Errors
