@@ -8,7 +8,7 @@
  * @package   isotope_payment_sepa
  * @author    Michael Gruschwitz <info@grusch-it.de>
  * @license   LGPL
- * @copyright Michael Gruschwitz 2015
+ * @copyright Michael Gruschwitz 2015-2017
  */
 
 namespace Gruschit;
@@ -23,7 +23,7 @@ use Serializable;
  *
  * @package    isotope_payment_sepa
  * @author     Michael Gruschwitz <info@grusch-it.de>
- * @copyright  Michael Gruschwitz 2015-2016
+ * @copyright  Michael Gruschwitz 2015-2017
  * @see        http://stackoverflow.com/questions/20983339/validate-iban-php#20983340
  */
 class SepaPaymentBag implements Serializable
